@@ -1,0 +1,13 @@
+{
+  "name": "basic-navigation",
+  "description": "Navigate to a page, wait for it to load, take a screenshot",
+  "timeout": 60000,
+  "actions": [
+    { "type": "navigate", "url": "https://example.com" },
+    { "type": "wait", "ms": 2000 },
+    { "type": "wait_for", "selector": "h1", "timeout": 10000 },
+    { "type": "screenshot", "path": "output/example-home.png" },
+    { "type": "scroll", "direction": "down", "amount": 300 },
+    { "type": "screenshot", "path": "output/example-scrolled.png" }
+  ]
+}
