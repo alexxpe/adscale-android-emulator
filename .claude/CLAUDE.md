@@ -102,13 +102,29 @@ CDP({ host: '127.0.0.1', port: 9222 })
 
 ## MCP Servers
 
-| Server | Purpose |
-|--------|---------|
-| shell | Run ADB commands, emulator management (allowlisted: adb, emulator, avdmanager, node, npx, pnpm) |
-| filesystem | Read instruction files, write reports/screenshots |
-| memory | Track emulator session state and execution progress |
-| fetch | Retrieve ADB/CDP documentation |
-| playwright | Verify browser automation results |
+| Server | Package | Purpose |
+|--------|---------|---------|
+| playwright | `@playwright/mcp` | Verify browser automation results, inspect Chrome DevTools |
+| memory | `@modelcontextprotocol/server-memory` | Track emulator session state and execution progress |
+| fetch | `mcp-server-fetch` (via uvx) | Retrieve ADB/CDP documentation and Android SDK guides |
+| filesystem | `@modelcontextprotocol/server-filesystem` | Read instruction files from `./instructions/`, write to `./output/` |
+| shell | `mcp-shell` | Run ADB commands, emulator management (allowlisted: adb, emulator, avdmanager, node, npx, pnpm) |
+
+### MCP Verification Commands
+
+```
+# shell:      mcp__shell__run_command({ command: "adb devices" })
+# filesystem: mcp__filesystem__list_directory({ path: "./instructions" })
+# memory:     mcp__memory__store({ key: "test", value: "ok" })
+# fetch:      mcp__fetch__fetch({ url: "https://developer.android.com/tools/adb" })
+# playwright: mcp__playwright__navigate({ url: "https://example.com" })
+```
+
+### Environment Requirements
+
+- `uvx` must be installed for the fetch MCP (`pip install uv` or `brew install uv`)
+- `adb` must be on PATH for shell MCP ADB commands
+- `ANDROID_HOME` or `ANDROID_SDK_ROOT` should be set for emulator/avdmanager
 
 ## Agent Context Limits
 

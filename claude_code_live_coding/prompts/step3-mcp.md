@@ -31,7 +31,7 @@ you need to update the @.mcp.json for get all these mcps, update the @.claude to
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-playwright"]
+      "args": ["-y", "@playwright/mcp"]
     },
     "memory": {
       "command": "npx",
@@ -52,7 +52,7 @@ you need to update the @.mcp.json for get all these mcps, update the @.claude to
     },
     "shell": {
       "command": "npx",
-      "args": ["-y", "@anthropic/mcp-shell"],
+      "args": ["-y", "mcp-shell"],
       "env": {
         "ALLOWED_COMMANDS": "adb,emulator,avdmanager,node,npx,pnpm"
       }
